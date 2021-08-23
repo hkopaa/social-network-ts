@@ -2,9 +2,7 @@ import styles from './App.module.css'
 import Navbar from './components/Navbar/Navbar'
 import { Route, withRouter, Switch, Redirect, BrowserRouter } from 'react-router-dom'
 
-import UsersContainer from './components/Users/UsersContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
-import Login from './components/Login/Login'
 import React from 'react'
 import { connect, Provider } from 'react-redux'
 import { compose } from 'redux'
@@ -12,6 +10,8 @@ import { initializeApp } from './redux/app-reducer'
 import Preloader from './components/common/Preloader/Preloader'
 import { withSuspense } from './hoc/withSuspense'
 import store, { AppStateType } from './redux/redux-store'
+import { UsersPage } from './components/Users/UsersContainer'
+import { LoginPage } from './components/Login/Login'
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
@@ -51,8 +51,8 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
             <Route exact path='/' render={() => <Redirect to={'/profile'} />} />
             <Route path='/dialogs' render={() => <SuspendedDialogs />} />
             <Route path='/profile/:userId?' render={() => <SuspendedProfile />} />
-            <Route path='/users' render={() => <UsersContainer pageTitle={'Самураи'} />} />
-            <Route path='/login' render={() => <Login />} />
+            <Route path='/users' render={() => <UsersPage pageTitle={'Самураи'} />} />
+            <Route path='/login' render={() => <LoginPage />} />
             <Route path='*' render={() => <div>404 NOT FOUND</div>} />
           </Switch>
         </div>
