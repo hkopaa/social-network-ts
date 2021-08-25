@@ -15,7 +15,7 @@ export const Header: React.FC<MapPropsType> = (props) => {
 
   const dispatch = useDispatch()
   const logoutCallBack = () => {
-    dispatch(logout)
+    dispatch(logout())
   }
 
   const { Header } = Layout
